@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
-import {userDetails} from '../redux/actions/UserDetails';
-import {useSelector} from 'react-redux';
+import {
+  updateUserDetails,
+  userDetails,
+} from '../redux/reducers/userDetails/userDetailsSlice';
+import {useSelector, useDispatch} from 'react-redux';
 
 const UserProfile = props => {
   const userList = useSelector(state => state.userDetails.userDetails);
-
+  const dispatch = useDispatch();
   let [names, setName] = useState('');
   let [color, setColor] = useState('');
 
@@ -17,11 +20,14 @@ const UserProfile = props => {
       alert('maximum values acheived');
       return;
     }
-    userDetails({
-      name: names,
-      favoriteColor: color,
-    }),
-      navigation.goBack();
+    dispatch(
+      updateUserDetails({
+        name: names,
+        favoriteColor: color,
+      }),
+    );
+
+    navigation.goBack();
   };
 
   return (
@@ -30,13 +36,13 @@ const UserProfile = props => {
       <View style={styles.inputView}>
         <TextInput
           value={names}
-          placeholder={'enter name'}
+          placeholder={'Enter your name'}
           onChangeText={txt => setName(txt)}
           style={styles.inputBox}
         />
         <TextInput
           style={styles.inputBox}
-          placeholder={'enter favourite color'}
+          placeholder={'Enter your favourite color'}
           value={color}
           onChangeText={txt => setColor(txt)}
         />

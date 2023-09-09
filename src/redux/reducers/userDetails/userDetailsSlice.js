@@ -15,5 +15,5 @@ export const userDetailsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {updateUserData} = userDetailsSlice.actions;
+export const {updateUserDetails} = userDetailsSlice.actions;
 export default userDetailsSlice.reducer;

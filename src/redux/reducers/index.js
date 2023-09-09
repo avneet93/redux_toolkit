@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import userDetails from './userDetailsSlice';
+import userDetails from './userDetails/userDetailsSlice';
 
 const appReducer = combineReducers({
   userDetails,
